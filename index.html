@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AlpeshMaidaVlogs.shop - Official Store</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans pb-24">
+
+  <!-- Header -->
+  <header class="bg-indigo-900 text-white sticky top-0 z-50 shadow-md">
+    <div class="max-w-md mx-auto px-4 py-3 flex justify-between items-center">
+      <div class="flex items-center space-x-2">
+        <i class="fa-solid fa-bag-shopping text-amber-400 text-xl"></i>
+        <h1 class="text-lg font-bold tracking-wide">AlpeshMaidaVlogs<span class="text-amber-400">.shop</span></h1>
+      </div>
+      <button onclick="toggleCart()" class="relative p-2 bg-indigo-800 rounded-full">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span id="cart-badge" class="absolute -top-1 -right-1 bg-amber-400 text-indigo-950 text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Banner -->
+  <section class="max-w-md mx-auto p-4">
+    <div class="bg-gradient-to-r from-indigo-700 to-purple-800 rounded-2xl p-5 text-white shadow-lg relative overflow-hidden">
+      <span class="bg-amber-400 text-indigo-950 text-xs font-black px-2.5 py-1 rounded-full uppercase tracking-wider">Special Launch</span>
+      <h2 class="text-xl font-extrabold mt-2">Vlogger Gear & Trendy Collection</h2>
+      <p class="text-xs text-indigo-100 mt-1">Cash on Delivery (COD) & Free Shipping all over India! 🇮🇳</p>
+    </div>
+  </section>
+
+  <!-- Products Section -->
+  <main class="max-w-md mx-auto px-4">
+    <h3 class="text-base font-bold text-gray-900 mb-3 flex items-center justify-between">
+      <span>🔥 Trending Products</span>
+      <span class="text-xs text-indigo-600 font-medium">All in Stock</span>
+    </h3>
+
+    <div class="grid grid-cols-2 gap-3" id="product-list">
+      <!-- Products will render here -->
+    </div>
+  </main>
+
+  <!-- Cart Modal -->
+  <div id="cart-modal" class="fixed inset-0 bg-black/60 z-50 hidden flex flex-col justify-end">
+    <div class="bg-white rounded-t-3xl p-5 max-w-md w-full mx-auto max-h-[85vh] overflow-y-auto">
+      <div class="flex justify-between items-center mb-4 border-b pb-3">
+        <h3 class="font-bold text-lg text-gray-900">Your Cart (<span id="cart-count">0</span>)</h3>
+        <button onclick="toggleCart()" class="text-gray-400 text-xl p-1">&times;</button>
+      </div>
+
+      <div id="cart-items" class="space-y-3 mb-4">
+        <!-- Cart Items -->
+      </div>
+
+      <div class="border-t pt-3 space-y-2">
+        <div class="flex justify-between text-sm text-gray-600">
+          <span>Subtotal:</span>
+          <span id="subtotal" class="font-bold">₹0</span>
+        </div>
+        <div class="flex justify-between text-sm text-gray-600">
+          <span>Shipping:</span>
+          <span class="text-green-600 font-bold">FREE</span>
+        </div>
+        <div class="flex justify-between text-base font-extrabold text-gray-900 border-t pt-2">
+          <span>Total Amount:</span>
+          <span id="total-price" class="text-indigo-900">₹0</span>
+        </div>
+      </div>
+
+      <!-- Checkout Form -->
+      <form id="checkout-form" onsubmit="handleCheckout(event)" class="mt-4 space-y-3">
+        <input type="text" id="cust-name" required placeholder="Full Name (पूरा नाम)" class="w-full text-sm p-2.5 border rounded-xl">
+        <input type="tel" id="cust-phone" required placeholder="10-digit Mobile Number" class="w-full text-sm p-2.5 border rounded-xl">
+        <textarea id="cust-address" required placeholder="Complete Delivery Address & Pincode" class="w-full text-sm p-2.5 border rounded-xl" rows="2"></textarea>
+        
+        <div class="flex gap-2">
+          <label class="flex-1 text-xs border p-2.5 rounded-xl flex items-center gap-2 cursor-pointer bg-indigo-50 border-indigo-300">
+            <input type="radio" name="payment" value="COD" checked>
+            <span class="font-bold">Cash on Delivery</span>
+          </label>
+          <label class="flex-1 text-xs border p-2.5 rounded-xl flex items-center gap-2 cursor-pointer">
+            <input type="radio" name="payment" value="Online UPI">
+            <span>Online UPI / Card</span>
+          </label>
+        </div>
+
+        <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-xl shadow-md flex items-center justify-center gap-2">
+          <i class="fa-solid fa-lock"></i> Place Order Now
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- WhatsApp Floating Button -->
+  <a href="https://wa.me/919999999999?text=Hello%20Alpesh,%20I%20have%20a%20question%20about%20an%20order" 
+     target="_blank" 
+     class="fixed bottom-5 right-5 bg-green-500 text-white p-3.5 rounded-full shadow-2xl flex items-center justify-center z-40 text-xl">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+  <script>
+    const products = [
+      { id: 1, name: "Wireless Collar Mic for Vlogging", price: 899, origPrice: 1999, img: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400" },
+      { id: 2, name: "Flexible Gorilla Tripod 360°", price: 449, origPrice: 999, img: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=400" },
+      { id: 3, name: "Rechargeable Mini LED Video Light", price: 599, origPrice: 1299, img: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=400" },
+      { id: 4, name: "Bluetooth Selfie Stick with Remote", price: 399, origPrice: 899, img: "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=400" }
+    ];
+
+    let cart = [];
+
+    function renderProducts() {
+      const list = document.getElementById('product-list');
+      list.innerHTML = products.map(p => `
+        <div class="bg-white rounded-2xl p-2.5 shadow-sm border border-gray-100 flex flex-col justify-between">
+          <img src="${p.img}" alt="${p.name}" class="w-full h-32 object-cover rounded-xl mb-2">
+          <div>
+            <h4 class="text-xs font-bold text-gray-800 line-clamp-2">${p.name}</h4>
+            <div class="flex items-center gap-1.5 mt-1">
+              <span class="text-sm font-black text-indigo-950">₹${p.price}</span>
+              <span class="text-xs text-gray-400 line-through">₹${p.origPrice}</span>
+            </div>
+          </div>
+          <button onclick="addToCart(${p.id})" class="mt-2 w-full bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold py-2 rounded-lg">
+            + Add to Cart
+          </button>
+        </div>
+      `).join('');
+    }
+
+    function addToCart(id) {
+      const p = products.find(i => i.id === id);
+      cart.push(p);
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      document.getElementById('cart-badge').innerText = cart.length;
+      document.getElementById('cart-count').innerText = cart.length;
+      const total = cart.reduce((sum, item) => sum + item.price, 0);
+      document.getElementById('subtotal').innerText = '₹' + total;
+      document.getElementById('total-price').innerText = '₹' + total;
+
+      const itemsContainer = document.getElementById('cart-items');
+      if (cart.length === 0) {
+        itemsContainer.innerHTML = '<p class="text-center text-xs text-gray-400 py-4">Your cart is empty.</p>';
+      } else {
+        itemsContainer.innerHTML = cart.map((item, index) => `
+          <div class="flex justify-between items-center text-xs bg-gray-50 p-2 rounded-lg">
+            <span class="font-semibold line-clamp-1 flex-1">${item.name}</span>
+            <span class="font-bold text-indigo-900 mx-2">₹${item.price}</span>
+            <button onclick="removeFromCart(${index})" class="text-red-500 font-bold px-1">&times;</button>
+          </div>
+        `).join('');
+      }
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCartUI();
+    }
+
+    function toggleCart() {
+      document.getElementById('cart-modal').classList.toggle('hidden');
+    }
+
+    function handleCheckout(e) {
+      e.preventDefault();
+      if(cart.length === 0) {
+        alert("Please add items to cart first!");
+        return;
+      }
+      const name = document.getElementById('cust-name').value;
+      const phone = document.getElementById('cust-phone').value;
+      const addr = document.getElementById('cust-address').value;
+      const total = cart.reduce((sum, item) => sum + item.price, 0);
+
+      alert(`🎉 Thank you, ${name}!\nYour order worth ₹${total} has been confirmed.\nWe will ship to:\n${addr}`);
+      cart = [];
+      updateCartUI();
+      toggleCart();
+    }
+
+    renderProducts();
+    updateCartUI();
+  </script>
+</body>
+</html>
