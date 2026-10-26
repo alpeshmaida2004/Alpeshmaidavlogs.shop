@@ -6,43 +6,113 @@
   <title>AlpeshMaidaVlogs.shop - Official Store</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .hidden-section { display: none; }
+  </style>
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans pb-24">
 
   <!-- Header -->
   <header class="bg-indigo-900 text-white sticky top-0 z-50 shadow-md">
     <div class="max-w-md mx-auto px-4 py-3 flex justify-between items-center">
-      <div class="flex items-center space-x-2">
+      <div class="flex items-center space-x-2 cursor-pointer" onclick="switchSection('storefront')">
         <i class="fa-solid fa-bag-shopping text-amber-400 text-xl"></i>
         <h1 class="text-lg font-bold tracking-wide">AlpeshMaidaVlogs<span class="text-amber-400">.shop</span></h1>
       </div>
-      <button onclick="toggleCart()" class="relative p-2 bg-indigo-800 rounded-full">
-        <i class="fa-solid fa-cart-shopping"></i>
-        <span id="cart-badge" class="absolute -top-1 -right-1 bg-amber-400 text-indigo-950 text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">0</span>
-      </button>
+      <div class="flex items-center space-x-3">
+        <button onclick="switchSection('admin')" class="p-2 bg-indigo-800 rounded-full">
+          <i class="fa-solid fa-user-shield"></i>
+        </button>
+        <button onclick="toggleCart()" class="relative p-2 bg-indigo-800 rounded-full">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span id="cart-badge" class="absolute -top-1 -right-1 bg-amber-400 text-indigo-950 text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">0</span>
+        </button>
+      </div>
     </div>
   </header>
 
-  <!-- Hero Banner -->
-  <section class="max-w-md mx-auto p-4">
-    <div class="bg-gradient-to-r from-indigo-700 to-purple-800 rounded-2xl p-5 text-white shadow-lg relative overflow-hidden">
-      <span class="bg-amber-400 text-indigo-950 text-xs font-black px-2.5 py-1 rounded-full uppercase tracking-wider">Special Launch</span>
-      <h2 class="text-xl font-extrabold mt-2">Vlogger Gear & Trendy Collection</h2>
-      <p class="text-xs text-indigo-100 mt-1">Cash on Delivery (COD) & Free Shipping all over India! 🇮🇳</p>
-    </div>
-  </section>
+  <!-- Storefront Section -->
+  <div id="section-storefront">
+    <!-- Hero Banner -->
+    <section class="max-w-md mx-auto p-4">
+      <div class="bg-gradient-to-r from-indigo-700 to-purple-800 rounded-2xl p-5 text-white shadow-lg relative overflow-hidden">
+        <span class="bg-amber-400 text-indigo-950 text-xs font-black px-2.5 py-1 rounded-full uppercase tracking-wider">Special Launch</span>
+        <h2 class="text-xl font-extrabold mt-2">Vlogger Gear & Trendy Collection</h2>
+        <p class="text-xs text-indigo-100 mt-1">Cash on Delivery (COD) & Free Shipping all over India! 🇮🇳</p>
+      </div>
+    </section>
 
-  <!-- Products Section -->
-  <main class="max-w-md mx-auto px-4">
-    <h3 class="text-base font-bold text-gray-900 mb-3 flex items-center justify-between">
-      <span>🔥 Trending Products</span>
-      <span class="text-xs text-indigo-600 font-medium">All in Stock</span>
-    </h3>
+    <!-- Products Section -->
+    <main class="max-w-md mx-auto px-4">
+      <h3 class="text-base font-bold text-gray-900 mb-3 flex items-center justify-between">
+        <span>🔥 Trending Products</span>
+        <span class="text-xs text-indigo-600 font-medium">All in Stock</span>
+      </h3>
 
-    <div class="grid grid-cols-2 gap-3" id="product-list">
-      <!-- Products will render here -->
+      <div class="grid grid-cols-2 gap-3" id="product-list">
+        <!-- Products will render here -->
+      </div>
+    </main>
+  </div>
+
+  <!-- Admin Dashboard Section -->
+  <div id="section-admin" class="hidden-section max-w-md mx-auto px-4 py-6">
+    <div class="bg-white rounded-3xl p-5 shadow-sm border border-gray-100 mb-6">
+      <h2 class="text-xl font-extrabold text-indigo-950 mb-4 flex items-center gap-2">
+        <i class="fa-solid fa-chart-line text-indigo-600"></i> Admin Dashboard
+      </h2>
+      
+      <div class="grid grid-cols-3 gap-3 mb-6">
+        <div class="bg-indigo-50 p-3 rounded-2xl text-center border border-indigo-100">
+          <span class="block text-xs text-indigo-600 font-bold mb-1">Total Orders</span>
+          <span id="stat-orders" class="text-2xl font-black text-indigo-950">0</span>
+        </div>
+        <div class="bg-emerald-50 p-3 rounded-2xl text-center border border-emerald-100">
+          <span class="block text-xs text-emerald-600 font-bold mb-1">Total Sales</span>
+          <span id="stat-sales" class="text-2xl font-black text-emerald-950">₹0</span>
+        </div>
+        <div class="bg-amber-50 p-3 rounded-2xl text-center border border-amber-100">
+          <span class="block text-xs text-amber-600 font-bold mb-1">Pending</span>
+          <span id="stat-pending" class="text-2xl font-black text-amber-950">0</span>
+        </div>
+      </div>
+
+      <nav class="flex space-x-2 p-1 bg-gray-100 rounded-2xl">
+        <button id="nav-orders" onclick="switchAdminTab('orders')" class="flex-1 text-sm font-bold py-2.5 rounded-xl bg-white shadow-sm text-indigo-900">Orders</button>
+        <button id="nav-products" onclick="switchAdminTab('products')" class="flex-1 text-sm font-bold py-2.5 rounded-xl text-gray-600 hover:text-indigo-900 transition-colors">Products</button>
+      </nav>
     </div>
-  </main>
+
+    <!-- Admin: Orders Tab -->
+    <div id="admin-tab-orders" class="space-y-4">
+      <h3 class="font-bold text-lg text-gray-900 mb-3">Recent Orders</h3>
+      <div id="admin-order-list" class="space-y-4">
+        <p class="text-center text-gray-400 py-6">No orders yet.</p>
+      </div>
+    </div>
+
+    <!-- Admin: Products Tab -->
+    <div id="admin-tab-products" class="hidden-section space-y-4">
+      <h3 class="font-bold text-lg text-gray-900 mb-3">Manage Products</h3>
+      <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 mb-4">
+        <h4 class="font-bold text-sm text-gray-900 mb-3 underline">Add New Product</h4>
+        <form onsubmit="addProduct(event)" class="space-y-3">
+          <input type="text" id="new-name" required placeholder="Product Name" class="w-full text-sm p-2.5 border rounded-xl bg-gray-50">
+          <div class="grid grid-cols-2 gap-3">
+            <input type="number" id="new-price" required placeholder="Selling Price (₹)" class="w-full text-sm p-2.5 border rounded-xl bg-gray-50">
+            <input type="number" id="new-cost" required placeholder="Supplier Cost (₹)" class="w-full text-sm p-2.5 border rounded-xl bg-gray-50">
+          </div>
+          <input type="url" id="new-img" required placeholder="Image URL (e.g., Unsplash link)" class="w-full text-sm p-2.5 border rounded-xl bg-gray-50">
+          <button type="submit" class="w-full bg-indigo-900 hover:bg-indigo-950 text-white font-bold py-3 rounded-xl shadow-md">
+            Add Product to Store
+          </button>
+        </form>
+      </div>
+      <div id="admin-product-list" class="space-y-3">
+        <!-- Products list for edit/delete -->
+      </div>
+    </div>
+  </div>
 
   <!-- Cart Modal -->
   <div id="cart-modal" class="fixed inset-0 bg-black/60 z-50 hidden flex flex-col justify-end">
@@ -103,14 +173,43 @@
   </a>
 
   <script>
-    const products = [
-      { id: 1, name: "Wireless Collar Mic for Vlogging", price: 899, origPrice: 1999, img: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400" },
-      { id: 2, name: "Flexible Gorilla Tripod 360°", price: 449, origPrice: 999, img: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=400" },
-      { id: 3, name: "Rechargeable Mini LED Video Light", price: 599, origPrice: 1299, img: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=400" },
-      { id: 4, name: "Bluetooth Selfie Stick with Remote", price: 399, origPrice: 899, img: "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=400" }
+    // Initial products data
+    let products = JSON.parse(localStorage.getItem('admin_products')) || [
+      { id: 1, name: "Wireless Collar Mic for Vlogging", price: 899, cost: 400, img: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400" },
+      { id: 2, name: "Flexible Gorilla Tripod 360°", price: 449, cost: 200, img: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=400" },
+      { id: 3, name: "Rechargeable Mini LED Video Light", price: 599, cost: 300, img: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=400" },
+      { id: 4, name: "Bluetooth Selfie Stick with Remote", price: 399, cost: 150, img: "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=400" }
     ];
 
     let cart = [];
+    let orders = JSON.parse(localStorage.getItem('admin_orders')) || [];
+
+    // Save initial load to local storage
+    localStorage.setItem('admin_products', JSON.stringify(products));
+
+    function switchSection(sectionId) {
+      document.getElementById('section-storefront').classList.add('hidden-section');
+      document.getElementById('section-admin').classList.add('hidden-section');
+      
+      document.getElementById(`section-${sectionId}`).classList.remove('hidden-section');
+      toggleCart(true); // Close cart if open
+
+      if(sectionId === 'admin') {
+        updateAdminDashboard();
+      }
+    }
+
+    function switchAdminTab(tabId) {
+      document.getElementById('admin-tab-orders').classList.add('hidden-section');
+      document.getElementById('admin-tab-products').classList.add('hidden-section');
+      
+      document.getElementById('admin-tab-' + tabId).classList.remove('hidden-section');
+      
+      document.getElementById('nav-orders').className = 'flex-1 text-sm font-bold py-2.5 rounded-xl text-gray-600 hover:text-indigo-900 transition-colors';
+      document.getElementById('nav-products').className = 'flex-1 text-sm font-bold py-2.5 rounded-xl text-gray-600 hover:text-indigo-900 transition-colors';
+      
+      document.getElementById('nav-' + tabId).className = 'flex-1 text-sm font-bold py-2.5 rounded-xl bg-white shadow-sm text-indigo-900';
+    }
 
     function renderProducts() {
       const list = document.getElementById('product-list');
@@ -121,7 +220,6 @@
             <h4 class="text-xs font-bold text-gray-800 line-clamp-2">${p.name}</h4>
             <div class="flex items-center gap-1.5 mt-1">
               <span class="text-sm font-black text-indigo-950">₹${p.price}</span>
-              <span class="text-xs text-gray-400 line-through">₹${p.origPrice}</span>
             </div>
           </div>
           <button onclick="addToCart(${p.id})" class="mt-2 w-full bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold py-2 rounded-lg">
@@ -163,8 +261,13 @@
       updateCartUI();
     }
 
-    function toggleCart() {
-      document.getElementById('cart-modal').classList.toggle('hidden');
+    function toggleCart(forceClose = false) {
+      const modal = document.getElementById('cart-modal');
+      if(forceClose) {
+        modal.classList.add('hidden');
+      } else {
+        modal.classList.toggle('hidden');
+      }
     }
 
     function handleCheckout(e) {
@@ -176,16 +279,128 @@
       const name = document.getElementById('cust-name').value;
       const phone = document.getElementById('cust-phone').value;
       const addr = document.getElementById('cust-address').value;
+      const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+      
       const total = cart.reduce((sum, item) => sum + item.price, 0);
-
-      alert(`🎉 Thank you, ${name}!\nYour order worth ₹${total} has been confirmed.\nWe will ship to:\n${addr}`);
+      const profit = cart.reduce((sum, item) => sum + (item.price - item.cost), 0);
+      
+      const newOrder = {
+        id: 'ORD-' + Date.now(),
+        date: new Date().toLocaleString(),
+        name,
+        phone,
+        address: addr,
+        items: [...cart],
+        total,
+        profit,
+        payment: paymentMethod,
+        status: 'Pending'
+      };
+      
+      orders.unshift(newOrder);
+      localStorage.setItem('admin_orders', JSON.stringify(orders));
+      
+      alert(`🎉 Thank you, ${name}!\nYour order worth ₹${total} has been confirmed.`);
       cart = [];
       updateCartUI();
       toggleCart();
     }
 
+    // Admin Functions
+    function addProduct(e) {
+      e.preventDefault();
+      const name = document.getElementById('new-name').value;
+      const price = parseFloat(document.getElementById('new-price').value);
+      const cost = parseFloat(document.getElementById('new-cost').value);
+      const img = document.getElementById('new-img').value;
+
+      const newProduct = { id: Date.now(), name, price, cost, img };
+      products.push(newProduct);
+      localStorage.setItem('admin_products', JSON.stringify(products));
+      
+      renderProducts();
+      renderAdminProducts();
+      
+      e.target.reset();
+      alert("Product added successfully!");
+    }
+
+    function deleteProduct(id) {
+      if(!confirm("Are you sure you want to delete this product?")) return;
+      products = products.filter(p => p.id !== id);
+      localStorage.setItem('admin_products', JSON.stringify(products));
+      renderProducts();
+      renderAdminProducts();
+    }
+
+    function updateAdminDashboard() {
+      const totalOrders = orders.length;
+      const totalSales = orders.reduce((sum, o) => sum + o.total, 0);
+      const pendingOrders = orders.filter(o => o.status === 'Pending').length;
+
+      document.getElementById('stat-orders').innerText = totalOrders;
+      document.getElementById('stat-sales').innerText = '₹' + totalSales;
+      document.getElementById('stat-pending').innerText = pendingOrders;
+
+      renderAdminOrders();
+      renderAdminProducts();
+    }
+
+    function renderAdminOrders() {
+      const list = document.getElementById('admin-order-list');
+      if(orders.length === 0) {
+        list.innerHTML = '<p class="text-center text-gray-400 py-6">No orders yet.</p>';
+        return;
+      }
+
+      list.innerHTML = orders.map(o => {
+         const itemsText = o.items.map(i => `${i.name} (₹${i.price})`).join(', ');
+         const whatsappMsg = `Hello Supplier! I have a new order. Customer: ${o.name}, Phone: ${o.phone}, Address: ${o.address}, Items: ${itemsText}, Payment: ${o.payment}`;
+         const encodedMsg = encodeURIComponent(whatsappMsg);
+         
+         return `
+          <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
+            <div class="flex justify-between items-start mb-2">
+              <div>
+                <span class="block font-bold text-gray-900">${o.name}</span>
+                <span class="block text-xs text-gray-500">${o.phone}</span>
+                <span class="block text-xs text-indigo-600 font-semibold">${o.status}</span>
+              </div>
+              <span class="font-bold text-indigo-950">₹${o.total}</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-2">${o.address}</p>
+            <div class="text-xs text-gray-500 mb-4 bg-gray-50 p-2 rounded-lg">
+              <strong>Items:</strong> ${itemsText}
+            </div>
+            <a href="https://wa.me/919999999999?text=${encodedMsg}" target="_blank" class="block w-full bg-emerald-500 text-white text-center font-bold py-2.5 rounded-xl shadow-sm">
+              <i class="fa-brands fa-whatsapp"></i> Send to Supplier
+            </a>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderAdminProducts() {
+      const list = document.getElementById('admin-product-list');
+      list.innerHTML = products.map(p => `
+        <div class="bg-white rounded-2xl p-3 shadow-sm border border-gray-100 flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <img src="${p.img}" class="w-12 h-12 rounded-lg object-cover">
+            <div>
+              <h4 class="text-sm font-bold text-gray-800 line-clamp-1">${p.name}</h4>
+              <span class="text-xs text-gray-500">Sell: ₹${p.price} | Cost: ₹${p.cost}</span>
+            </div>
+          </div>
+          <button onclick="deleteProduct(${p.id})" class="text-red-500 p-2">
+            <i class="fa-solid fa-trash"></i>
+          </button>
+        </div>
+      `).join('');
+    }
+
+    // Initial load
     renderProducts();
-    updateCartUI();
+    switchAdminTab('orders');
   </script>
 </body>
 </html>
