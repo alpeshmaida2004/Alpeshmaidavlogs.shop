@@ -4,47 +4,45 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Flipkart Plus Store - Official Shopping & Tracking</title>
-  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     .hide-scrollbar::-webkit-scrollbar { display: none; }
     .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
   </style>
 </head>
-<body class="bg-gray-100 text-gray-800 font-sans pb-20">
+<body class="bg-gray-100 text-gray-800 font-sans pb-24">
 
   <!-- ================= TOP FLIPKART HEADER ================= -->
   <header class="bg-[#2874f0] text-white sticky top-0 z-50 shadow-md">
     <div class="max-w-4xl mx-auto px-3 py-2.5">
       <div class="flex items-center justify-between gap-3">
-        <!-- Logo -->
+        <!-- Brand Logo -->
         <div class="cursor-pointer" onclick="showView('store')">
           <div class="flex items-center gap-1">
             <span class="text-xl font-black italic tracking-wide">Flipkart</span>
-            <span class="text-xs bg-amber-400 text-blue-900 font-extrabold px-1 rounded italic">Plus</span>
+            <span class="text-xs bg-amber-400 text-blue-950 font-extrabold px-1 rounded italic">Plus</span>
           </div>
           <p class="text-[10px] text-blue-100 italic -mt-1 flex items-center gap-1">
             Explore <span class="text-amber-300 font-bold">Plus</span> <i class="fa-solid fa-star text-[8px] text-amber-300"></i>
           </p>
         </div>
 
-        <!-- Quick Action Nav Buttons -->
+        <!-- Header Actions -->
         <div class="flex items-center gap-2">
-          <!-- Order Tracking Button -->
+          <!-- Order Tracking -->
           <button onclick="showView('tracking')" class="text-xs bg-blue-800 hover:bg-blue-700 px-2.5 py-1.5 rounded font-medium flex items-center gap-1.5 border border-blue-600">
             <i class="fa-solid fa-truck-fast text-amber-300"></i>
             <span>Track Order</span>
           </button>
 
-          <!-- Admin Portal Button -->
+          <!-- Admin Portal Login -->
           <button id="admin-nav-btn" onclick="openAdminPortal()" class="text-xs bg-white text-[#2874f0] font-bold px-3 py-1.5 rounded shadow hover:bg-blue-50 flex items-center gap-1">
             <i class="fa-solid fa-user-shield"></i>
             <span id="admin-btn-text">Admin</span>
           </button>
 
-          <!-- Cart Button -->
+          <!-- Cart Icon -->
           <button onclick="toggleCart()" class="relative p-2 bg-blue-800 rounded-lg hover:bg-blue-700">
             <i class="fa-solid fa-cart-shopping text-base text-amber-300"></i>
             <span id="cart-badge" class="absolute -top-1 -right-1 bg-amber-400 text-blue-950 text-[10px] font-black rounded-full h-4 w-4 flex items-center justify-center">0</span>
@@ -54,19 +52,19 @@
 
       <!-- Live Search Bar -->
       <div class="mt-2.5 relative">
-        <input type="text" id="search-input" oninput="handleSearch()" placeholder="सर्च करें प्रोडक्ट्स, ब्रांड्स और बहुत कुछ..." 
+        <input type="text" id="search-input" oninput="handleSearch()" placeholder="Search for products, brands and more..." 
           class="w-full text-xs py-2 pl-9 pr-4 rounded-md text-gray-800 bg-white placeholder-gray-400 shadow-inner focus:outline-none focus:ring-2 focus:ring-amber-400">
         <i class="fa-solid fa-magnifying-glass text-gray-400 absolute left-3 top-2.5 text-xs"></i>
       </div>
     </div>
 
-    <!-- Category Pills Scrollbar -->
+    <!-- Category Filter Bar -->
     <div class="bg-white border-b border-gray-200 text-gray-700 px-3 py-2 flex gap-2 overflow-x-auto hide-scrollbar text-xs">
-      <button onclick="filterCategory('All')" class="cat-pill whitespace-nowrap px-3 py-1 rounded-full bg-blue-600 text-white font-semibold">सभी (All)</button>
+      <button onclick="filterCategory('All')" class="cat-pill whitespace-nowrap px-3 py-1 rounded-full bg-blue-600 text-white font-semibold">All Items</button>
       <button onclick="filterCategory('Mics')" class="cat-pill whitespace-nowrap px-3 py-1 rounded-full bg-gray-100 hover:bg-gray-200">Collar Mics</button>
       <button onclick="filterCategory('Tripods')" class="cat-pill whitespace-nowrap px-3 py-1 rounded-full bg-gray-100 hover:bg-gray-200">Tripods</button>
       <button onclick="filterCategory('Lights')" class="cat-pill whitespace-nowrap px-3 py-1 rounded-full bg-gray-100 hover:bg-gray-200">Studio Lights</button>
-      <button onclick="filterCategory('Gadgets')" class="cat-pill whitespace-nowrap px-3 py-1 rounded-full bg-gray-100 hover:bg-gray-200">Smart Gadgets</button>
+      <button onclick="filterCategory('Gadgets')" class="cat-pill whitespace-nowrap px-3 py-1 rounded-full bg-gray-100 hover:bg-gray-200">Accessories</button>
     </div>
   </header>
 
@@ -75,48 +73,48 @@
     <!-- Promotional Banner -->
     <div class="bg-gradient-to-r from-amber-400 via-orange-400 to-amber-500 rounded-xl p-4 text-slate-900 shadow-sm flex items-center justify-between mb-4">
       <div>
-        <span class="bg-black text-amber-300 text-[10px] font-black px-2 py-0.5 rounded uppercase">Big Billion Saving</span>
-        <h2 class="text-base font-extrabold mt-1">Vlogger & Creator Essentials</h2>
-        <p class="text-xs font-semibold text-slate-800">Free Fast Delivery | Cash On Delivery Available</p>
+        <span class="bg-black text-amber-300 text-[10px] font-black px-2 py-0.5 rounded uppercase">Big Billion Deal</span>
+        <h2 class="text-base font-extrabold mt-1">Creator & Vlogger Store</h2>
+        <p class="text-xs font-semibold text-slate-800">Cash On Delivery Available | Fast Express Delivery</p>
       </div>
-      <i class="fa-solid fa-gift text-4xl text-slate-900 opacity-20 hidden sm:block"></i>
+      <i class="fa-solid fa-bag-shopping text-4xl text-slate-900 opacity-20 hidden sm:block"></i>
     </div>
 
-    <!-- Product Grid -->
+    <!-- Products Grid -->
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5" id="product-container">
-      <!-- Injected by JavaScript -->
+      <!-- Dynamic Products -->
     </div>
   </div>
 
-  <!-- ================= VIEW 2: FLIPKART STYLE ORDER TRACKING ================= -->
+  <!-- ================= VIEW 2: ORDER TRACKING ================= -->
   <div id="view-tracking" class="max-w-md mx-auto p-4 hidden">
     <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-200">
-      <div class="flex items-center gap-2 mb-3">
+      <div class="flex items-center gap-2 mb-2">
         <i class="fa-solid fa-location-crosshairs text-blue-600 text-lg"></i>
-        <h2 class="text-base font-bold text-gray-900">ऑर्डर ट्रैक करें (Track Order)</h2>
+        <h2 class="text-base font-bold text-gray-900">Track Your Order</h2>
       </div>
-      <p class="text-xs text-gray-500 mb-4">ऑर्डर करते समय दिया गया अपना 10-अंकों का मोबाइल नंबर या Order ID डालें:</p>
+      <p class="text-xs text-gray-500 mb-4">Enter your 10-digit Mobile Number or Order ID:</p>
       
       <div class="flex gap-2 mb-4">
-        <input type="text" id="track-query" placeholder="Mobile No. या Order ID" class="w-full text-xs p-2.5 border rounded-xl bg-gray-50 focus:outline-none focus:border-blue-600">
-        <button onclick="searchOrderTracking()" class="bg-[#2874f0] text-white px-4 rounded-xl text-xs font-bold whitespace-nowrap">खोजें</button>
+        <input type="text" id="track-query" placeholder="Mobile No. or Order ID" class="w-full text-xs p-2.5 border rounded-xl bg-gray-50 focus:outline-none focus:border-blue-600">
+        <button onclick="searchOrderTracking()" class="bg-[#2874f0] text-white px-4 rounded-xl text-xs font-bold whitespace-nowrap">Track</button>
       </div>
 
       <div id="tracking-result" class="space-y-4">
-        <!-- Live Tracking Card will render here -->
+        <!-- Dynamic Result Card -->
       </div>
     </div>
   </div>
 
-  <!-- ================= VIEW 3: ADMIN PORTAL ================= -->
+  <!-- ================= VIEW 3: ADMIN & SUPPLIER PANEL ================= -->
   <div id="view-admin" class="max-w-4xl mx-auto p-4 hidden">
     <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-200 mb-4">
       <div class="flex justify-between items-center mb-4">
         <div>
           <h2 class="text-lg font-black text-gray-900 flex items-center gap-2">
-            <i class="fa-solid fa-sliders text-blue-600"></i> Flipkart Seller Hub (Admin)
+            <i class="fa-solid fa-sliders text-blue-600"></i> Seller Hub & Admin
           </h2>
-          <span class="text-xs text-emerald-600 font-bold">● Authorized Session Active</span>
+          <span class="text-xs text-emerald-600 font-bold">● Active Admin Session</span>
         </div>
         <button onclick="logoutAdmin()" class="text-xs bg-red-50 text-red-600 font-bold px-3 py-1.5 rounded-lg border border-red-200">
           Logout
@@ -126,79 +124,74 @@
       <!-- Quick Metrics -->
       <div class="grid grid-cols-2 md:grid-cols-4 gap-2 mb-4">
         <div class="bg-blue-50 border border-blue-100 p-3 rounded-xl text-center">
-          <span class="text-[11px] text-blue-600 font-bold block">कुल ऑर्डर्स</span>
+          <span class="text-[11px] text-blue-600 font-bold block">Total Orders</span>
           <span id="metric-orders" class="text-xl font-black text-blue-950">0</span>
         </div>
         <div class="bg-emerald-50 border border-emerald-100 p-3 rounded-xl text-center">
-          <span class="text-[11px] text-emerald-600 font-bold block">कुल सेल्स</span>
+          <span class="text-[11px] text-emerald-600 font-bold block">Total Revenue</span>
           <span id="metric-sales" class="text-xl font-black text-emerald-950">₹0</span>
         </div>
         <div class="bg-amber-50 border border-amber-100 p-3 rounded-xl text-center">
-          <span class="text-[11px] text-amber-600 font-bold block">पेंडिंग आर्डर</span>
+          <span class="text-[11px] text-amber-600 font-bold block">Pending Orders</span>
           <span id="metric-pending" class="text-xl font-black text-amber-950">0</span>
         </div>
         <div class="bg-purple-50 border border-purple-100 p-3 rounded-xl text-center">
-          <span class="text-[11px] text-purple-600 font-bold block">लाइव प्रोडक्ट्स</span>
+          <span class="text-[11px] text-purple-600 font-bold block">Active Products</span>
           <span id="metric-products" class="text-xl font-black text-purple-950">0</span>
         </div>
       </div>
 
       <!-- Admin Tabs -->
       <div class="flex border-b border-gray-200 text-xs font-bold mb-4">
-        <button onclick="switchAdminSubTab('orders')" id="subtab-btn-orders" class="py-2 px-4 border-b-2 border-blue-600 text-blue-600">कस्टमर ऑर्डर्स & सप्लायर डिस्पैच</button>
-        <button onclick="switchAdminSubTab('products')" id="subtab-btn-products" class="py-2 px-4 text-gray-500">प्रोडक्ट्स मैनेजमेंट</button>
+        <button onclick="switchAdminSubTab('orders')" id="subtab-btn-orders" class="py-2 px-4 border-b-2 border-blue-600 text-blue-600">Customer Orders & Supplier Dispatch</button>
+        <button onclick="switchAdminSubTab('products')" id="subtab-btn-products" class="py-2 px-4 text-gray-500">Product Management</button>
       </div>
 
-      <!-- Admin Orders SubTab -->
+      <!-- Orders SubTab -->
       <div id="admin-subtab-orders">
-        <div id="admin-orders-list" class="space-y-3">
-          <!-- Order Cards -->
-        </div>
+        <div id="admin-orders-list" class="space-y-3"></div>
       </div>
 
-      <!-- Admin Products SubTab -->
+      <!-- Products SubTab -->
       <div id="admin-subtab-products" class="hidden">
-        <!-- Add Product Form -->
+        <!-- New Product Form -->
         <div class="bg-gray-50 border border-gray-200 rounded-xl p-4 mb-4">
-          <h4 class="text-xs font-bold uppercase text-gray-700 mb-3">नया प्रोडक्ट लिस्ट करें</h4>
+          <h4 class="text-xs font-bold uppercase text-gray-700 mb-3">Add New Product to Store</h4>
           <form onsubmit="adminAddNewProduct(event)" class="space-y-2.5 text-xs">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
-              <input type="text" id="p-name" placeholder="Product Title (उदा. Wireless Mic)" required class="p-2 border rounded-lg bg-white">
+              <input type="text" id="p-name" placeholder="Product Title (e.g., Wireless Mic)" required class="p-2 border rounded-lg bg-white">
               <select id="p-cat" class="p-2 border rounded-lg bg-white">
                 <option value="Mics">Collar Mics</option>
                 <option value="Tripods">Tripods</option>
                 <option value="Lights">Studio Lights</option>
-                <option value="Gadgets">Smart Gadgets</option>
+                <option value="Gadgets">Accessories</option>
               </select>
             </div>
             <div class="grid grid-cols-3 gap-2">
               <input type="number" id="p-price" placeholder="Selling Price ₹" required class="p-2 border rounded-lg bg-white">
-              <input type="number" id="p-mrp" placeholder="Original MRP ₹" required class="p-2 border rounded-lg bg-white">
+              <input type="number" id="p-mrp" placeholder="MRP Price ₹" required class="p-2 border rounded-lg bg-white">
               <input type="number" id="p-cost" placeholder="Supplier Cost ₹" required class="p-2 border rounded-lg bg-white">
             </div>
-            <input type="url" id="p-img" placeholder="Image URL (Unsplash or direct image link)" required class="w-full p-2 border rounded-lg bg-white">
+            <input type="url" id="p-img" placeholder="Direct Image URL (e.g. Unsplash URL)" required class="w-full p-2 border rounded-lg bg-white">
             <button type="submit" class="w-full bg-[#2874f0] text-white font-bold py-2.5 rounded-lg shadow hover:bg-blue-700">
-              वेबसाइट पर लिस्ट करें (Publish Product)
+              Publish Product Now
             </button>
           </form>
         </div>
 
-        <!-- Existing Products List -->
-        <div id="admin-products-list" class="space-y-2">
-          <!-- Products -->
-        </div>
+        <div id="admin-products-list" class="space-y-2"></div>
       </div>
     </div>
   </div>
 
-  <!-- ================= ADMIN PIN LOGIN POPUP ================= -->
+  <!-- ================= ADMIN PIN MODAL ================= -->
   <div id="admin-modal" class="fixed inset-0 bg-black/70 z-50 hidden flex items-center justify-center px-4">
     <div class="bg-white rounded-3xl p-6 max-w-xs w-full text-center shadow-2xl">
       <div class="w-12 h-12 bg-blue-100 text-blue-700 rounded-2xl flex items-center justify-center mx-auto mb-3 text-xl">
         <i class="fa-solid fa-lock"></i>
       </div>
       <h3 class="text-base font-extrabold text-gray-900">Admin Authentication</h3>
-      <p class="text-xs text-gray-500 mb-4">डैशबोर्ड अनलॉक करने के लिए पिन दर्ज करें (Default PIN: <b>1234</b>)</p>
+      <p class="text-xs text-gray-500 mb-4">Dashboard PIN enter karein (Default PIN: <b>1234</b>)</p>
       <form onsubmit="verifyAdminPin(event)" class="space-y-3">
         <input type="password" id="input-admin-pin" placeholder="••••" maxlength="6" class="w-full text-center tracking-widest text-lg font-bold p-2.5 border rounded-xl bg-gray-50 focus:outline-none focus:border-blue-600">
         <button type="submit" class="w-full bg-[#2874f0] text-white font-bold py-2.5 rounded-xl text-xs shadow hover:bg-blue-700">
@@ -211,7 +204,7 @@
     </div>
   </div>
 
-  <!-- ================= FLIPKART CART MODAL ================= -->
+  <!-- ================= CART MODAL ================= -->
   <div id="cart-modal" class="fixed inset-0 bg-black/60 z-50 hidden flex flex-col justify-end">
     <div class="bg-white rounded-t-3xl p-4 max-w-lg w-full mx-auto max-h-[90vh] overflow-y-auto">
       <div class="flex justify-between items-center pb-2.5 border-b border-gray-100">
@@ -221,34 +214,33 @@
         <button onclick="toggleCart()" class="text-gray-400 text-2xl leading-none">&times;</button>
       </div>
 
-      <!-- Items Container -->
       <div id="cart-list" class="divide-y divide-gray-100 my-2"></div>
 
       <!-- Price Breakdown -->
       <div class="bg-gray-50 p-3 rounded-xl border border-gray-100 space-y-1.5 text-xs text-gray-600 my-3">
         <div class="flex justify-between">
-          <span>मूल्य (Items Total):</span>
+          <span>Items Total:</span>
           <span id="price-subtotal" class="font-bold text-gray-900">₹0</span>
         </div>
         <div class="flex justify-between">
-          <span>डिलीवरी शुल्क (Delivery):</span>
-          <span class="text-emerald-600 font-bold">मुफ़्त (FREE)</span>
+          <span>Delivery Charges:</span>
+          <span class="text-emerald-600 font-bold">FREE</span>
         </div>
         <div class="flex justify-between text-sm font-black text-gray-900 border-t pt-1.5">
-          <span>कुल देय राशि (Total Amount):</span>
+          <span>Total Amount:</span>
           <span id="price-total" class="text-blue-900">₹0</span>
         </div>
       </div>
 
       <!-- Checkout Form -->
       <form onsubmit="processCustomerOrder(event)" class="space-y-2 text-xs">
-        <h4 class="font-bold text-gray-800">डिलीवरी पता (Shipping Address)</h4>
-        <input type="text" id="cust-fullname" placeholder="पूरा नाम (Full Name)" required class="w-full p-2 border rounded-lg bg-gray-50">
+        <h4 class="font-bold text-gray-800">Shipping Details</h4>
+        <input type="text" id="cust-fullname" placeholder="Customer Full Name" required class="w-full p-2 border rounded-lg bg-gray-50">
         <div class="grid grid-cols-2 gap-2">
-          <input type="tel" id="cust-phone" placeholder="10-अंकों का मोबाइल नंबर" pattern="[0-9]{10}" required class="p-2 border rounded-lg bg-gray-50">
-          <input type="text" id="cust-pincode" placeholder="पिन कोड (Pincode)" required class="p-2 border rounded-lg bg-gray-50">
+          <input type="tel" id="cust-phone" placeholder="10-digit Mobile Number" pattern="[0-9]{10}" required class="p-2 border rounded-lg bg-gray-50">
+          <input type="text" id="cust-pincode" placeholder="PIN Code" required class="p-2 border rounded-lg bg-gray-50">
         </div>
-        <textarea id="cust-address" placeholder="मकान नं, गली, मोहल्ला / लैंडमार्क, शहर" required rows="2" class="w-full p-2 border rounded-lg bg-gray-50"></textarea>
+        <textarea id="cust-address" placeholder="House No., Street, Landmark, Area & City" required rows="2" class="w-full p-2 border rounded-lg bg-gray-50"></textarea>
 
         <div class="bg-blue-50 border border-blue-200 p-2.5 rounded-lg flex items-center justify-between text-xs">
           <span class="font-semibold text-blue-900">Payment Option:</span>
@@ -262,39 +254,38 @@
     </div>
   </div>
 
-  <!-- Bottom Navigation Bar (Mobile Friendly) -->
+  <!-- Bottom Navigation Bar -->
   <footer class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-40 py-2">
     <div class="max-w-md mx-auto flex justify-around text-[10px] text-gray-500 font-semibold">
       <button onclick="showView('store')" id="bnav-store" class="flex flex-col items-center text-blue-600">
         <i class="fa-solid fa-house text-base"></i>
-        <span>होम</span>
+        <span>Home</span>
       </button>
       <button onclick="showView('tracking')" id="bnav-tracking" class="flex flex-col items-center">
         <i class="fa-solid fa-truck-ramp-box text-base"></i>
-        <span>ऑर्डर ट्रैकिंग</span>
+        <span>Tracking</span>
       </button>
-      <button onclick="toggleCart()" class="flex flex-col items-center relative">
+      <button onclick="toggleCart()" class="flex flex-col items-center">
         <i class="fa-solid fa-cart-shopping text-base"></i>
-        <span>कार्ट</span>
+        <span>Cart</span>
       </button>
       <button onclick="openAdminPortal()" id="bnav-admin" class="flex flex-col items-center">
         <i class="fa-solid fa-user-gear text-base"></i>
-        <span>एडमिन</span>
+        <span>Admin</span>
       </button>
     </div>
   </footer>
 
-  <!-- ================= JAVASCRIPT LOGIC ================= -->
+  <!-- ================= JAVASCRIPT ================= -->
   <script>
     const DEFAULT_ADMIN_PIN = "1234";
     let isAdminLoggedIn = false;
     let selectedCategory = 'All';
 
-    // Initial Product Catalog
     let defaultProducts = [
       {
         id: 101,
-        name: "Wireless Collar Mic for YouTube & Vlogging",
+        name: "Wireless Collar Mic for YouTube & Vlogging (Type-C / iPhone)",
         category: "Mics",
         price: 899,
         mrp: 1999,
@@ -305,7 +296,7 @@
       },
       {
         id: 102,
-        name: "360° Flexible Gorilla Pod Tripod Stand",
+        name: "360° Flexible Gorilla Pod Tripod Stand with Phone Mount",
         category: "Tripods",
         price: 449,
         mrp: 999,
@@ -338,17 +329,16 @@
       }
     ];
 
-    // LocalStorage initialization
     let products = JSON.parse(localStorage.getItem('fk_products')) || defaultProducts;
     let cart = [];
     let orders = JSON.parse(localStorage.getItem('fk_orders')) || [
       {
         id: "OD" + 827361928,
         date: "26 Oct 2026",
-        name: "Rahul Sharma",
+        name: "Demo Customer",
         phone: "9876543210",
         pincode: "312601",
-        address: "House 45, Station Road, Pratapgarh",
+        address: "Near Main Market, Peepal Khoont, Pratapgarh",
         items: [{ name: "Wireless Collar Mic for YouTube", price: 899 }],
         total: 899,
         status: "Shipped",
@@ -359,7 +349,6 @@
     localStorage.setItem('fk_products', JSON.stringify(products));
     localStorage.setItem('fk_orders', JSON.stringify(orders));
 
-    // View Navigation
     function showView(viewId) {
       document.getElementById('view-store').classList.add('hidden');
       document.getElementById('view-tracking').classList.add('hidden');
@@ -368,19 +357,18 @@
       document.getElementById(`view-${viewId}`).classList.remove('hidden');
       window.scrollTo({ top: 0, behavior: 'smooth' });
 
-      // Update bottom nav highlights
       document.querySelectorAll('footer button').forEach(b => b.classList.remove('text-blue-600'));
-      if(document.getElementById(`bnav-${viewId}`)) { document.getElementById(`bnav-${viewId}`).classList.add('text-blue-600');
+      if(document.getElementById(`bnav-${viewId}`)) {
+        document.getElementById(`bnav-${viewId}`).classList.add('text-blue-600');
       }
 
       if(viewId === 'admin') updateAdminDashboard();
     }
 
-    // Product Rendering
     function renderProducts(itemsToRender = products) {
       const container = document.getElementById('product-container');
       if (itemsToRender.length === 0) {
-        container.innerHTML = `<div class="col-span-full py-10 text-center text-gray-400 text-xs">कोई प्रोडक्ट नहीं मिला!</div>`;
+        container.innerHTML = `<div class="col-span-full py-10 text-center text-gray-400 text-xs">No products found!</div>`;
         return;
       }
 
@@ -393,4 +381,13 @@
               <span class="absolute top-2 left-2 bg-emerald-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded">${discount}% off</span>
             </div>
             
-            <div class="p-2.5
+            <div class="p-2.5 flex-1 flex flex-col justify-between">
+              <div>
+                <h3 class="text-xs font-semibold text-gray-800 line-clamp-2 leading-snug">${p.name}</h3>
+                
+                <div class="flex items-center gap-1 mt-1.5">
+                  <span class="bg-emerald-600 text-white text-[10px] font-black px-1.5 py-0.2 rounded flex items-center gap-0.5">
+                    ${p.rating || 4.5} <i class="fa-solid fa-star text-[7px]"></i>
+                  </span>
+                  <span class="text-[10px] text-gray-400">(${p.reviews || 120})</span>
+    
